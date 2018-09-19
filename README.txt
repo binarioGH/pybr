@@ -1,0 +1,1 @@
+Es un intento de lenguaje de programación, nada demaciado bueno.
