@@ -1,9 +1,23 @@
 #-*-coding: utf-8-*-
 from sys import argv
-
 def echo(*strs):
 	for arg in strs:
 		print(arg)
+
+def ret(i=1,*nums):
+	t = nums[0]
+	for n in nums[1:]:
+		t += n*i
+	return t
+
+def substract(*nums):
+	r = ret(-1, *nums)
+	return r
+	
+def plus(*nums):
+	r = ret(1, *nums)
+	return r
+
 
 def printvars():
 	print(dv)
@@ -32,7 +46,7 @@ if __name__ == '__main__':
 		for line in code:
 			if "=" in code:
 				mm = vars(line)
-				dv[line[:str(mm[0])]] = line[mm[1]:]
+				dv[str(line[:mm[0]])] = line[mm[1]:]
 			else: 
 				try:
 					exec(line)
