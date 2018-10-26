@@ -3,20 +3,20 @@ from sys import argv
 from os import system, getcwd
 def interactiveinterpreter():
 	print("PYBR es un lenguaje de programación que continúa en desarrollo.")
-	cmd = ""
+	cmm = ""
 	commands = {"cls":"cls()", "pwd": "pwd()"}
-	while cmd != "exit":
-		cmd = input(">>>>")
-		if cmd in commands:
-			cmd = commands[cmd]
+	while cmm != "exit":
+		cmm = input(">>>>")
+		if cmm in commands:
+			cmm = commands[cmm]
 		try:
-		    if cmd[:11] == "interpreter":
+		    if cmm[:11] == "interpreter":
 		    	continue
 
 		except:
 			pass
 		try:
-			exec(cmd)
+			exec(cmm)
 		except Exception as e:
 			print(e)
 	exit()
@@ -31,8 +31,23 @@ def interpreter(file):
 	except Exception as e:
 		print(e)
 		exit()
-	for l in f:
-		exec(l)
+	c = False
+	code = f.readlines()
+
+	f.close()
+	for l in code:
+		l = l.strip("\n")
+		if l.strip(" ") == "startcmd".strip(""):
+			c = True
+			continue
+		elif c == True:
+			if l.strip(" ") != "endcmd".strip(" "):
+				system(l)
+			else:
+				c = False 
+		else:
+			exec(l)
+
 
 
 if __name__ == '__main__':
@@ -40,6 +55,3 @@ if __name__ == '__main__':
 		interactiveinterpreter()
 	else:
 		interpreter(argv[1])
-
-
-

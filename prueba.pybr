@@ -1,1 +1,4 @@
-pwd()
+startcmd
+git add --all
+git commit -m "Creo que finalmente funciona :3"
+end-cmd
